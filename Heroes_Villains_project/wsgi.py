@@ -1,5 +1,5 @@
 """
-WSGI config for Heroes_Villains_project project.
+WSGI config for heroes_villains_project project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Heroes_Villains_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'heroes_villains_project.settings')
 
 application = get_wsgi_application()
