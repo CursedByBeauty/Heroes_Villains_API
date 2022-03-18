@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import supers
+from .models import Super
 # Register your models here.
 
-admin.site.register(supers)
+admin.site.register(Super)

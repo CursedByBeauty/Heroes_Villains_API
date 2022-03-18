@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import supersSerializer
-from .models import supers
+from .serializers import SuperSerializer
+from .models import Super
 from supers import serializers
 
 
@@ -11,11 +11,11 @@ from supers import serializers
 def supers_list(request):
     
     if request.method == 'GET':
-        supers = supers.objects.all()
-        serializer = supersSerializer(supers, many=True)
+        supers = Super.objects.all()
+        serializer = SuperSerializer(supers, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = supersSerializer(data=request.data)
+        serializer = SuperSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
         # if serializer.is_valid() == True:
@@ -28,15 +28,15 @@ def supers_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def supers_detail(request, pk):
-    supers = get_object_or_404(supers, pk=pk)
+    super = get_object_or_404(Super, pk=pk)
     if request.method == 'GET':
-        serializer = supersSerializer(supers);
+        serializer = SuperSerializer(super);
         return Response(serializer.data)
     elif request.method == 'PUT': 
-        serializer = supersSerializer(supers, data=request.data)
+        serializer = SuperSerializer(super, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
     elif request.method == 'DELETE':
-        supers.delete()
+        super.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

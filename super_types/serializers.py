@@ -1,8 +1,8 @@
 from dataclasses import field, fields
 from rest_framework import serializers
-from .models import super_types
+from .models import SuperType
 
-class super_typesSerializer(serializers.ModelSerializer):
+class SuperTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = super_types
+        model = SuperType
         fields = ['id', 'type']
