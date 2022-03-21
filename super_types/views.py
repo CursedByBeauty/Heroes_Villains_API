@@ -11,7 +11,17 @@ from super_types import serializers
 def super_types_list(request):
     
     if request.method == 'GET':
+        
+        # type_name = request.query_params.get('super_type')
+        # print(type_name)
+        
         super_types = SuperType.objects.all()
+
+        # if type_name:
+        #     super_types = super_types.filter(type__name=type_name)
+        # if type_name:
+        #     super_types = super_types.filter(type__name=type_name)
+        
         serializer = SuperTypeSerializer(super_types, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':

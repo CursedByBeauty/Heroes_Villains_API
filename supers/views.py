@@ -11,7 +11,15 @@ from supers import serializers
 def supers_list(request):
     
     if request.method == 'GET':
+        
+        type_name = request.query_params.get('type')
+        print(type_name)
+        
         supers = Super.objects.all()
+        
+        if type_name:
+            supers = supers.filter(super_type__type=type_name)
+        
         serializer = SuperSerializer(supers, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
@@ -25,6 +33,8 @@ def supers_list(request):
         
         # else:
         #       return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def supers_detail(request, pk):
